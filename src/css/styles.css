@@ -94,9 +94,9 @@ header > p {
   width: 35px;
  }
 
-/* lower pane styling */
+/* bottom page styling */
 
-.lower-pane {
+.bottom-page {
   height: 100%;
   width: 100%;
   display: flex;
@@ -117,7 +117,7 @@ header > p {
   margin-bottom: 5vh;
 }
 
-.lower-pane > main {
+.bottom-page > main {
   background-color: #008ab9;
   height: 90vh;
   width: 100%;
