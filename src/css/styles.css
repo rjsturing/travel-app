@@ -1,3 +1,213 @@
-body {
-  background: radial-gradient(circle, rgba(63,94,251,1) 0%, rgba(252,70,107,1) 100%);
+body,
+html {
+  font-family: 'Averia Serif Libre', serif;
+  height: 100%;
+  overflow: hidden;
+}
+
+* {
+  margin: 0;
+  box-sizing: border-box;
+}
+
+header {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  padding-left: 7vw;
+  padding-right: 8vw;
+  height: 10vh;
+  justify-content: space-between;
+}
+
+header > p {
+  font-family: 'Averia Serif Libre', serif;
+}
+
+.main-logo > img {
+  height: 85px;
+  width: 85px;
+  display: flex;
+  align-content: flex-start;
+ }
+
+/* .main-logo { */
+    /* display: flex; */
+    /* align-content: center; */
+    /* width: 40px;  */
+    /* height: 40px;  */
+    /* border-radius: 50%;  */
+    /* background-size: cover; */
+/* } */
+
+ h1 {
+  font-size: 2.7em;
+  margin-left: .5vw;
+}
+
+.header-left-side {
+  display: flex;
+  align-items: center;
+}
+
+.header-right-side {
+  width: 25vw;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  font-family: 'Averia Serif Libre', serif;
+}
+
+
+.user-profile > img {
+  height: 85px;
+  width: 85px;
+ }
+
+ .trips > img {
+  height: 85px;
+  width: 175px;
+ }
+
+ button.user-profile,
+ .trips
+  {
+  height: 35px;
+  width: 1px;
+  display: flex;
+  align-items: center;
+  /* justify-content: center; */
+  background-color: white;
+  border: none;
+ }
+
+ #users {
+  height: 75px;
+  width: 85px;
+  margin-right: 10px;
+ }
+
+ .trips {
+  margin-left: 60px;
+  margin-right: 175px;
+  height: 35px;
+  width: 35px;
+ }
+
+/* bottom page styling */
+
+.bottom-page {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  font-family: 'Averia Serif Libre', serif;
+}
+
+.login-box {
+  height: 100%;
+  width: 300px;
+}
+
+.login-box > p {
+  color: black;
+  font-family: 'Averia Serif Libre', serif;
+  font-weight: 400;
+  margin-bottom: 5vh;
+}
+
+.bottom-page > main {
+  background-color: #008ab9;
+  height: 90vh;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+form > button {
+  font-family: 'Averia Serif Libre', serif;
+}
+
+
+.login-box {
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: space-evenly;
+  height: 50vh;
+  width: 35vw;
+}
+
+.login-email {
+  display: flex;
+  flex-direction: column;
+}
+
+.login-password {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  height: 20vh;
+  margin-top: 2vh;
+}
+
+ button {
+  width: 50%;
+  height: 5vh;
+ }
+
+ .create-acct {
+  color: #008AB9;
+  cursor: pointer;
+ }
+
+ input {
+  height: 5vh;
+ }
+
+ #toggle-password {
+  margin-left: 17vw;
+  font-family: 'Averia Serif Libre', serif;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+ }
+
+#signin {
+  cursor: pointer;
+  padding: 10px 20px;
+  border-radius: 10px;
+  width: 10vw;
+  margin-bottom: 5vh;
+  background-color: #6aaf61;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+button {
+  cursor: pointer;
+}
+
+.login-box {
+  padding: 20px;
+  background-color: #f0f0f0;
+  border: 1px solid #ccc;
+  border-radius: 15px;
+  box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.1); 
+  margin: 100px auto;
+}
+
+/* Additional styling for text */
+.sign-in {
+  margin-top: 15px;
+  font-size: 24px;
+  text-align: center;
+}
+
+button > p {
+  font-family: 'Averia Serif Libre', serif;
 }
