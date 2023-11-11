@@ -1,6 +1,6 @@
 body,
 html {
-  font-family: 'Electrolux Sans', sans-serif;
+  font-family: 'Averia Serif Libre', serif;
   height: 100%;
   overflow: hidden;
 }
@@ -21,17 +21,17 @@ header {
 }
 
 header > p {
- font-family: 'Roboto Mono', monospace;
+  font-family: 'Averia Serif Libre', serif;
 }
 
-.circle {
+.logo {
     width: 40px; 
     height: 40px; 
     border-radius: 50%; 
     background-size: cover;
 }
 
-.circle > img {
+.logo > img {
   height: 100%;
   width: 100%;
 }
@@ -51,7 +51,7 @@ header > p {
   display: flex;
   flex-direction: row;
   justify-content: flex-end;
-  font-family: 'Roboto Mono', monospace;
+  font-family: 'Averia Serif Libre', serif;
 }
 
 .notifications {
@@ -85,7 +85,7 @@ header > p {
   width: 20px;
  }
 
- #globe {
+ #user {
   height: 15px;
   width: 15px;
   margin-right: 10px;
@@ -108,7 +108,7 @@ header > p {
   display: flex;
   flex-direction: row;
   align-items: flex-start;
-  font-family: 'Roboto Mono', monospace;
+  font-family: 'Averia Serif Libre', serif;
 }
 
 .login-box {
@@ -118,7 +118,7 @@ header > p {
 
 .login-box > p {
   color: black;
-  font-family: 'Roboto Mono', monospace;
+  font-family: 'Averia Serif Libre', serif;
   font-weight: 400;
   margin-bottom: 5vh;
 }
@@ -133,7 +133,7 @@ header > p {
 }
 
 form > button {
-  font-family: 'Roboto Mono', monospace;
+  font-family: 'Averia Serif Libre', serif;
 }
 
 aside {
@@ -172,7 +172,7 @@ aside {
  }
 
  .create-acct {
-  color: navy;
+  color: #008AB9;
   cursor: pointer;
  }
 
@@ -182,7 +182,7 @@ aside {
 
  #toggle-password {
   margin-left: 17vw;
-  font-family: 'Roboto Mono', monospace;
+  font-family: 'Averia Serif Libre', serif;
   background-color: transparent;
   border: none;
   cursor: pointer;
@@ -221,5 +221,5 @@ button {
 }
 
 button > p {
-  font-family: 'Roboto Mono', monospace;
+  font-family: 'Averia Serif Libre', serif;
 }
