@@ -24,17 +24,21 @@ header > p {
   font-family: 'Averia Serif Libre', serif;
 }
 
-.logo {
-    width: 40px; 
-    height: 40px; 
-    border-radius: 50%; 
-    background-size: cover;
-}
+.main-logo > img {
+  height: 85px;
+  width: 85px;
+  display: flex;
+  align-content: flex-start;
+ }
 
-.logo > img {
-  height: 100%;
-  width: 100%;
-}
+/* .main-logo { */
+    /* display: flex; */
+    /* align-content: center; */
+    /* width: 40px;  */
+    /* height: 40px;  */
+    /* border-radius: 50%;  */
+    /* background-size: cover; */
+/* } */
 
  h1 {
   font-size: 2.7em;
@@ -53,6 +57,7 @@ header > p {
   justify-content: flex-end;
   font-family: 'Averia Serif Libre', serif;
 }
+
 
 .user-profile > img {
   height: 85px;
