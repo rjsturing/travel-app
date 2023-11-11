@@ -124,7 +124,7 @@ header > p {
 }
 
 .lower-pane > main {
-  background-color: skyblue;
+  background-color: #008ab9;
   height: 90vh;
   width: 100%;
   display: flex;
