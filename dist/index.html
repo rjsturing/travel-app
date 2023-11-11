@@ -9,10 +9,57 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Averia+Serif+Libre:ital,wght@0,300;1,300;1,700&display=swap" rel="stylesheet">
 </head>
-<body>
- 
-  
+
+<body class="login">
+
+  <header>
+    <div class="header-left-side">
+      <div class="circle">
+        <img src="./images/logo9.png">
+      </div>
+      <h1>Travel Tracker</h1>
+    </div>
+    <div class="header-right-side">
+      <button class="language">
+        <img src="./images/globe-icon.png" id="globe">
+        <p> English</p>
+      </button>
+      <button class="trips">
+        <p>Trips</p>
+      </button>
+      <button class="notifications">
+        <img src="./images/bell1.png">
+      </button>
+      <button class="user-profile">
+        <img src="./images/profile-logo.png">
+      </button>
+    </div>
+
+  </header>
+
+  <div class="lower-pane">
+
+    <main>
+      <form action="" method="post" id="form" name="form" class="login-box" >
+        <p class="sign-in">Sign in</p>
+        <p> Don't have an account? <span class="create-acct"> Create an account</span></p>
+        <section class="login-email">        
+          <label for="email">Email</label>
+          <input id="email" name="email" type="email" placeholder=" " autocomplete="username" required>
+        </section>                
+        <section class="login-password">        
+          <label for="current-password">Password</label>
+          <input id="current-password" name="current-password" type="password">
+          <button id="toggle-password" type="button">Show password</button>
+        </section>
+        <button id="signin">Sign in</button> 
+      </form>
+    </main>
+
+  </div>
+
   <!-- Do not include the scripts.js or class files here - it is done by the webpack server -->
   <script src="bundle.js"></script>
 
 </body>
+</html>
