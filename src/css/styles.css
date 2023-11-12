@@ -2,7 +2,7 @@ body,
 html {
   font-family: 'Averia Serif Libre', serif;
   height: 100%;
-  overflow: hidden;
+  /* overflow: hidden; */
 }
 
 * {

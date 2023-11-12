@@ -4,10 +4,17 @@ export const loginPage = document.querySelector('.lower-page-trips')
 export const tripsPage = document.querySelector('.lower-page-login')
 export const tripsTitle = document.querySelector('.trips-header')
 export const tripsTest = document.querySelector('.user-trips')
+const errorMessageElement = document.getElementById('errorMessage')
+
 
 // Event Handlers:
 
 // signInButton.addEventListener('click', showMainPage)
+
+export const showErrorMessage = (message) => {
+    errorMessageElement.innerText = message
+}
+
 
 export const showMainPage = () => {
     loginPage.classList.add('hidden');
