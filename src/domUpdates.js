@@ -1,9 +1,10 @@
 //Query Selectors:
 export const signInButton = document.querySelector('#signin')
-export const loginPage = document.querySelector('.lower-pane-1')
-export const tripsPage = document.querySelector('.lower-pane-2')
+export const loginPage = document.querySelector('.lower-page-trips')
+export const tripsPage = document.querySelector('.lower-page-login')
 export const tripsTitle = document.querySelector('.trips-header')
 export const tripsTest = document.querySelector('.user-trips')
+
 // Event Handlers:
 
 // signInButton.addEventListener('click', showMainPage)
@@ -13,10 +14,10 @@ export const showMainPage = () => {
     tripsPage.classList.remove('hidden');
 }
 export const getDestinationNums = (userTrips) => {
-    const justNums = userTrips.map(trip => {
+    const nums = userTrips.map(trip => {
         return trip.destinationID
     })
-    return justNums
+    return nums
 }
 export const getDestinationNames = (destinationNumbers, allDestinations) => {
     const locations = destinationNumbers.reduce((acc, number) => {

@@ -1,6 +1,5 @@
 // An example of how you tell webpack to use a CSS (SCSS) file
 import './css/styles.css';
-
 import './images/trips-icon.png'
 import './images/user-icon.png'
 import './images/main-logo.png'
@@ -21,7 +20,7 @@ const mainData = {
 }
 
 //Import Function
-import { getUserTrips, getUpcomingTrips, createTripCard  } from './tripFunctions';
+import { getUserTrips, getUpcomingTrips, createTripCard  } from './utils';
 
 // API Calls
 import {getData} from './apiCalls';
@@ -49,13 +48,15 @@ window.addEventListener('load', () => {
     console.log('mainData.currentUser',  mainData.currentUser)
     console.log('mainData.userTrips', mainData.userTrips)
   }
+  
   const getDescriptiveData = () => {
     mainData.userNums = getDestinationNums(mainData.userTrips)
     mainData.locationNames = getDestinationNames(mainData.userNums, mainData.destinations)
     console.log("mainData.userNums", mainData.userNums)
     console.log("mainData.locationNames", mainData.locationNames)
     mainData.tripCards = createTripCard(mainData.userTrips, mainData.destinations)
-  }
+  }+
+
   const generatePage = () => {
     mainData.currentUser = mainData.travelers[0];
     updateTripsPage(mainData.travelers[0].name, mainData.locationNames, mainData.trips[0].destinationID)
