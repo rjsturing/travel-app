@@ -25,20 +25,11 @@ header > p {
 }
 
 .main-logo > img {
-  height: 85px;
-  width: 85px;
+  height: 60px;
+  width: 60px;
   display: flex;
   align-content: flex-start;
  }
-
-/* .main-logo { */
-    /* display: flex; */
-    /* align-content: center; */
-    /* width: 40px;  */
-    /* height: 40px;  */
-    /* border-radius: 50%;  */
-    /* background-size: cover; */
-/* } */
 
  h1 {
   font-size: 2.7em;
@@ -51,38 +42,44 @@ header > p {
 }
 
 .header-right-side {
-  width: 25vw;
   display: flex;
   flex-direction: row;
   justify-content: flex-end;
   font-family: 'Averia Serif Libre', serif;
 }
 
-
 .user-profile > img {
-  height: 85px;
-  width: 85px;
+  height: 60px;
+  width: 60px;
  }
 
  .trips > img {
-  height: 85px;
+  height: 50px;
   width: 175px;
  }
 
- button.user-profile,
- .trips
+ button.user-profile
+ {
+  height: 35px;
+  width: 35px;
+  display: flex;
+  align-items: center;
+  background-color: white;
+  border: none;
+ }
+
+button.trips
   {
   height: 35px;
   width: 1px;
   display: flex;
   align-items: center;
-  /* justify-content: center; */
   background-color: white;
   border: none;
  }
 
  #users {
-  height: 75px;
+  height: 85px;
   width: 85px;
   margin-right: 10px;
  }
@@ -94,9 +91,7 @@ header > p {
   width: 35px;
  }
 
-/* bottom page styling */
-
-.bottom-page {
+.bottom-page-1 {
   height: 100%;
   width: 100%;
   display: flex;
@@ -113,11 +108,13 @@ header > p {
 .login-box > p {
   color: black;
   font-family: 'Averia Serif Libre', serif;
-  font-weight: 400;
-  margin-bottom: 5vh;
+  font-weight: 300;
+  margin-bottom: 2vh; 
+  display: flex;
+  justify-content: space-around
 }
 
-.bottom-page > main {
+.bottom-page-1 > main {
   background-color: #008ab9;
   height: 90vh;
   width: 100%;
@@ -129,7 +126,6 @@ header > p {
 form > button {
   font-family: 'Averia Serif Libre', serif;
 }
-
 
 .login-box {
   padding: 10px;
@@ -177,12 +173,12 @@ form > button {
  }
 
 #signin {
+  background-color: #548392;
   cursor: pointer;
-  padding: 10px 20px;
   border-radius: 10px;
+  margin-bottom: 2vh;
   width: 10vw;
-  margin-bottom: 5vh;
-  background-color: #6aaf61;
+  padding: 10px 20px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -201,9 +197,7 @@ button {
   margin: 100px auto;
 }
 
-/* Additional styling for text */
 .sign-in {
-  margin-top: 15px;
   font-size: 24px;
   text-align: center;
 }
@@ -211,3 +205,93 @@ button {
 button > p {
   font-family: 'Averia Serif Libre', serif;
 }
+
+h1,
+.location {
+  font-family: 'Averia Serif Libre', serif;
+}
+.login-box {
+  padding: 20px;
+  background-color: #f0f0f0;
+  border: 1px solid #ccc;
+  border-radius: 15px;
+  box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.1); 
+  margin: 100px auto;
+}
+
+.sign-in {
+  margin-bottom: 10px;
+  font-size: 24px;
+  text-align: center;
+}
+
+button > p {
+  font-family: 'Averia Serif Libre', serif;
+}
+.bottom-page-2 {
+  padding: 20px;
+  background-color: #008ab9;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  font-family: 'Averia Serif Libre', serif;
+}
+.bottom-page-2 > h1 {
+  margin-bottom: 20px;
+}
+.trip-card {
+  height: 30vh;
+  width: 30vw;
+  border-radius: 30px;
+  margin-top: 20px;
+  font-size: 200;
+  position: relative;
+}
+
+.trip-card img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+.location {
+  font-weight: bold;
+  font-size: 30px;
+}
+.location-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 40px;
+  background-color: white;
+  padding: 10px;
+  width: auto;
+  border-radius: 15px;
+}
+.trip-info-container {
+  background-color:#548392;
+   padding: 10px; 
+   display: flex;
+   flex-direction: column;
+   justify-content: space-evenly;
+}
+.trips-header {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+.type-of-trip {
+  margin-bottom: 3vh;
+  margin-top: 5vh;
+}
+
+.hidden {
+  display: none;
+}
+
+
+
+
+

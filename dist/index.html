@@ -14,24 +14,41 @@
 
   <header>
     <div class="header-left-side">
+      <button class="user-profile">
+        <img src="images/user-icon.png">
+      </button>
+      <button class="trips">
+        <img src="images/trips-icon.png">
+      </button>
+    </div>
+    <div class="header-right-side">
       <div class="main-logo">
         <img src="images/main-logo.png">
       </div>
       <h1>Travel Tracker</h1>
     </div>
-    <div class="header-right-side">
-      <button class="trips">
-        <img src="images/trips-icon.png">
-      </button>
-      <button class="user-profile">
-        <img src="images/user-icon.png">
-      </button>
-    </div>
   </header>
 
+  <div class="bottom-page-2">
+    <div class="center-container">
+    <h1 class="trips-header">Trips</h1>
+    <p class="trip-type"> Upcoming:</p>
+    <div class="trip-card">
+      <img src="./images/paris-pic.png">
+        <div class="trip-info-container">
+          <p class="location">Paris, France</p>
+          <p>Nov 12 - Nov 23</p>
+          <p>1 booking</p>
+        </div>
+      <p class="trip-type"> Pending:</p>
+      <p class="user-trips"></p>
+      <p class="trip-type"> Past:</p>
+    </div>
+    </div>
+  </div>
 
-  <div class="bottom-page">
 
+  <div class="bottom-page-1 hidden">
     <main>
       <form action="" method="post" id="form" name="form" class="login-box" >
         <p class="sign-in">Sign in</p>
@@ -48,7 +65,6 @@
         <button id="signin">Sign in</button> 
       </form>
     </main>
-
   </div>
 
   <!-- Do not include the scripts.js or class files here - it is done by the webpack server -->
