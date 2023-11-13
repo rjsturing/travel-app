@@ -14,24 +14,36 @@
 
   <header>
     <div class="header-left-side">
+      <button class="user-profile">
+        <img src="images/user-icon.png">
+      </button>
+      <button class="trips">
+        <img src="images/trips-icon.png">
+      </button>
+    </div>
+    <div class="header-right-side">
       <div class="main-logo">
         <img src="images/main-logo.png">
       </div>
       <h1>Travel Tracker</h1>
     </div>
-    <div class="header-right-side">
-      <button class="trips">
-        <img src="images/trips-icon.png">
-      </button>
-      <button class="user-profile">
-        <img src="images/user-icon.png">
-      </button>
-    </div>
   </header>
 
+  <section class="bottom-page-trip">
+    <div class="center-container">
+      <h1 class="trips-header">Trips</h1>
+      <section class="trips-container">
+<!-- TRIPS WILL BE POPULATED -->
+      </section>
+      <p id="annual-spending">Year-to-Date spending:</p><br>
+      <button id="go-to-booking-page">
+        Book A Trip
+      </button>
+    </div>
+  </section> 
 
-  <div class="bottom-page">
 
+  <!-- <div class="bottom-page-login hidden">
     <main>
       <form action="" method="post" id="form" name="form" class="login-box" >
         <p class="sign-in">Sign in</p>
@@ -48,8 +60,11 @@
         <button id="signin">Sign in</button> 
       </form>
     </main>
+  </div> -->
 
-  </div>
+  <footer>
+    <p id="errorMessage"></p>
+  </footer>
 
   <!-- Do not include the scripts.js or class files here - it is done by the webpack server -->
   <script src="bundle.js"></script>
