@@ -6,11 +6,8 @@ import "./images/main-logo.png";
 import "./images/paris-pic.png";
 
 // Import domUpdates
-import {
-  renderTrips,
-  showErrorMessage,
-  getDestinationNames
-} from "./domUpdates";
+import { renderTrips, populateDestinations, showErrorMessage } from "./domUpdates";
+
 
 let userId = 3
 
@@ -27,6 +24,7 @@ const setUpDashboard = (userId) => {
     .then(([tripsResponse, destinationsResponse]) => {
       const userTrips = filterUserTrips(userId, tripsResponse.trips);
       renderTrips(userTrips, destinationsResponse.destinations);
+      populateDestinations(destinationsResponse.destinations);
     })
     .catch((error) => showErrorMessage(error.message));
 };

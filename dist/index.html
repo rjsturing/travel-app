@@ -32,15 +32,43 @@
   <section class="bottom-page-trip">
     <div class="center-container">
       <h1 class="trips-header">Trips</h1>
-      <section class="trips-container">
-<!-- TRIPS WILL BE POPULATED -->
-      </section>
+      <div class="content-container"> <!-- Flex container for trips and booking panel -->
+        <section class="trips-container">
+          <!-- TRIPS WILL BE POPULATED -->
+        </section>
+        <div class="booking-panel">
+          <div class="booking-panel">
+            <h1 class="new-booking-header">Book A Trip</h1>
+            
+              <div class="date-section">
+                <p class="dates-error"></p>
+                <label for="start-date">Start Date: </label>
+                <input type="date" placeholder="search for dates" id="start-date" min="2023-08-07"required>
+              </div>
+              <div class="date-section">
+                <label for="end-date">End Date: </label>
+                <input type="date" placeholder="search for dates" id="end-date" min="2023-08-07" required>
+              </div>
+              <p class="location-error"></p>
+              <div class="location-section">
+                  <label for="location-dropdown">Select a Location:</label>
+                <select id="location-dropdown" required>
+                  <option id="selected-location" value="" disabled selected>Select a location</option>
+                </select>
+              </div>
+              <div class="num-travelers">
+                <p class="numTravelersError"></p>
+                <label for="num-travelers">Number of travelers:</label>
+                <input type="number" placeholder="enter number of travelers" id="num-travelers" min=1 max=14 required>
+              </div>
+              <button class="submitBtn" id="newBookingBtn">Submit</button>
+              </div>
+        </div>
+      </div>
       <p id="annual-spending">Year-to-Date spending:</p><br>
-      <button id="go-to-booking-page">
-        Book A Trip
-      </button>
+      <button id="go-to-booking-page">Book A Trip</button>
     </div>
-  </section> 
+  </section>
 
 
   <!-- <div class="bottom-page-login hidden">
