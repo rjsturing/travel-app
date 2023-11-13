@@ -267,7 +267,14 @@ button > p {
 }
 
 .trips-container {
+  height: 500px;
+  overflow-y: auto;
+}
 
+.trips-container img {
+  width: 200px; /* Set the width as desired */
+  height: auto; /* This maintains the aspect ratio of the images */
+  /* You can add more styling here as needed */
 }
 
 .location {
@@ -310,7 +317,14 @@ button > p {
   display: none;
 }
 
+.content-container {
+  display: flex;
+  justify-content: center;
+  align-items: start; /* Aligns items to the top of the container */
+  gap: 20px; /* Adjust as needed for spacing */
+}
 
-
-
-
+.trips-container,
+.booking-panel {
+  flex: 1; /* Each takes up equal width */
+}
