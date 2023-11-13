@@ -35,9 +35,10 @@ export const populateDestinations = (destinations) => {
   console.log(destinations);
   const locationDropdown = document.getElementById("location-dropdown");
   destinations.forEach((destination) => {
+    // console.log(destination.destination)
     const option = document.createElement("option");
     option.value = destination.id;
-    option.text = destination.name;
+    option.text = destination.destination;
     locationDropdown.appendChild(option);
   });
 };
