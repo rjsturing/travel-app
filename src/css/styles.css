@@ -266,6 +266,10 @@ button > p {
   display: block;
 }
 
+.trips-container {
+
+}
+
 .location {
   font-weight: bold;
   font-size: 30px;

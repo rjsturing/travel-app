@@ -7,35 +7,32 @@ import "./images/paris-pic.png";
 
 // Import domUpdates
 import {
+  renderTrips,
   showErrorMessage,
-  signInButton,
-  showMainPage,
-  updateTripsPage,
-  getDestinationNums,
-  getDestinationNames,
+  getDestinationNames
 } from "./domUpdates";
 
-// Data Model
-const mainData = {
-  today: "2023/11/11",
-};
+let userId = 3
 
 //Import Function
-import { getUserTrips, getUpcomingTrips, createTripCard } from "./utils";
+import { filterUserTrips } from "./utils";
 
 // API Calls
 import { getData } from "./apiCalls";
 
-signInButton.addEventListener("click", showMainPage);
+// signInButton.addEventListener("click", showMainPage);
 
 const setUpDashboard = (userId) => {
-  getData("trips")
-  .then((response) => console.log(response))
-  .catch((error) => showErrorMessage(error.message));
+  Promise.all([getData("trips"), getData("destinations")])
+    .then(([tripsResponse, destinationsResponse]) => {
+      const userTrips = filterUserTrips(userId, tripsResponse.trips);
+      renderTrips(userTrips, destinationsResponse.destinations);
+    })
+    .catch((error) => showErrorMessage(error.message));
 };
 
 window.addEventListener("load", () => {
-  setUpDashboard(50);
+  setUpDashboard(3);
 });
 
 
