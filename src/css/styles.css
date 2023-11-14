@@ -137,7 +137,7 @@ form > button {
   width: 35vw;
 }
 
-.login-email {
+.login-username {
   display: flex;
   flex-direction: column;
 }
