@@ -15,7 +15,9 @@ import { filterUserTrips,
 // API Calls
 import { getData, postData } from "./apiCalls";
 
+
 let userId = 3
+let destinations = [];
 
 const calculateDuration = (startDate, endDate) => {
   const start = new Date(startDate);
@@ -24,10 +26,32 @@ const calculateDuration = (startDate, endDate) => {
   return duration;
 };
 
+const calculateEstimatedCost = () => {
+  const numberOfTravelers = parseInt(document.getElementById("num-travelers").value);
+  const destinationID = parseInt(document.getElementById("location-dropdown").value);
+  const duration = calculateDuration(document.getElementById("start-date").value, document.getElementById("end-date").value);
+
+  // Assuming you have a way to get the destination details (like cost per day, flight cost per person)
+  const destination = destinations.find(dest => dest.id === destinationID);
+
+  if (destination && numberOfTravelers && duration) {
+      const lodgingCost = destination.estimatedLodgingCostPerDay * numberOfTravelers * duration;
+      const flightCost = destination.estimatedFlightCostPerPerson * numberOfTravelers;
+      const totalCost = lodgingCost + flightCost;
+      const totalCostWithFee = totalCost * 1.1; // 10% travel agent fee
+
+      return totalCostWithFee;
+  }
+
+  return 0;
+};
+
+
 
 const setUpDashboard = (userId) => {
   Promise.all([getData("trips"), getData("destinations")])
     .then(([tripsResponse, destinationsResponse]) => {
+      destinations = destinationsResponse.destinations;
       const userTrips = filterUserTrips(userId, tripsResponse.trips);
       renderTrips(userTrips, destinationsResponse.destinations);
       populateDestinations(destinationsResponse.destinations);
@@ -41,6 +65,7 @@ const setUpDashboard = (userId) => {
 window.addEventListener("load", () => {
   setUpDashboard(userId);
 });
+
 
 const formatDate = (dateString) => {
   return dateString.split('-').join('/');
@@ -100,3 +125,17 @@ document.getElementById("booking-form").addEventListener("submit", function(even
 
   handleSubmit(event);
 });
+
+
+const displayEstimatedCost = () => {
+  const estimatedCost = calculateEstimatedCost();
+  const costElement = document.getElementById("estimated-cost");
+  if (costElement) {
+      costElement.textContent = `Estimated Cost: $${estimatedCost.toFixed(2)}`;
+  }
+};
+
+document.getElementById("num-travelers").addEventListener("change", displayEstimatedCost);
+document.getElementById("location-dropdown").addEventListener("change", displayEstimatedCost);
+document.getElementById("start-date").addEventListener("change", displayEstimatedCost);
+document.getElementById("end-date").addEventListener("change", displayEstimatedCost);

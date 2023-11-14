@@ -29,3 +29,4 @@ const thisYearsTrips = trips.filter(
 
   return finalCost;
 };
+
