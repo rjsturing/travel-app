@@ -1,36 +1,28 @@
-// An example of how you tell webpack to use a CSS (SCSS) file
 import "./css/styles.css";
-import "./images/trips-icon.png";
-import "./images/user-icon.png";
-import "./images/main-logo.png";
-import "./images/paris-pic.png";
 
-// Import domUpdates
 import {
   renderTrips,
   populateDestinations,
   showErrorMessage,
   updateAnnualSpending,
-  signInButton,
   loginPage,
   tripsPage,
 } from "./domUpdates";
 
-//Import Function
-import { filterUserTrips, calculateTotalCostForYear } from "./utils";
+// Utility Functions
+import {
+  filterUserTrips,
+  calculateTotalCostForYear,
+  calculateDuration,
+  calculateTripCost,
+} from "./utils";
 
 // API Calls
 import { getData, postData, fetchSingleTraveler } from "./apiCalls";
 
-let userId
+// Global Variables
+let globalUserID;
 let destinations = [];
-
-const calculateDuration = (startDate, endDate) => {
-  const start = new Date(startDate);
-  const end = new Date(endDate);
-  const duration = (end - start) / (1000 * 60 * 60 * 24); // Convert milliseconds to days
-  return duration;
-};
 
 const calculateEstimatedCost = () => {
   const numberOfTravelers = parseInt(
@@ -44,20 +36,10 @@ const calculateEstimatedCost = () => {
     document.getElementById("end-date").value
   );
 
-  // Assuming you have a way to get the destination details (like cost per day, flight cost per person)
   const destination = destinations.find((dest) => dest.id === destinationID);
-
   if (destination && numberOfTravelers && duration) {
-    const lodgingCost =
-      destination.estimatedLodgingCostPerDay * numberOfTravelers * duration;
-    const flightCost =
-      destination.estimatedFlightCostPerPerson * numberOfTravelers;
-    const totalCost = lodgingCost + flightCost;
-    const totalCostWithFee = totalCost * 1.1; // 10% travel agent fee
-
-    return totalCostWithFee;
+    return calculateTripCost(destination, numberOfTravelers, duration);
   }
-
   return 0;
 };
 
@@ -78,9 +60,7 @@ export const setUpDashboard = (userId) => {
     .catch((error) => showErrorMessage(error.message));
 };
 
-window.addEventListener("load", () => {
-  // setUpDashboard(userId);
-});
+window.addEventListener("load", () => {});
 
 ////////////////////////////////////////////////////////
 const formatDate = (dateString) => {
@@ -107,7 +87,7 @@ const handleSubmit = (event) => {
 
   const newTrip = {
     id: Date.now(),
-    userID: window.userId,
+    userID: globalUserID,
     destinationID: parseInt(document.getElementById("location-dropdown").value),
     travelers: parseInt(document.getElementById("num-travelers").value),
     date: formatDate(document.getElementById("start-date").value),
@@ -148,6 +128,7 @@ document
     handleSubmit(event);
   });
 
+////////////////////////////////////////////////////////
 const displayEstimatedCost = () => {
   const estimatedCost = calculateEstimatedCost();
   const costElement = document.getElementById("estimated-cost");
@@ -195,9 +176,9 @@ const loginUser = () => {
   }
 
   const userId = parseInt(userIdMatch[1]);
-  window.userId = userId;
+  globalUserID = userId;
 
-    if (userId < 1 || userId > 50) {
+  if (userId < 1 || userId > 50) {
     showErrorMessage(
       "Invalid user ID. Please enter a number between 1 and 50."
     );
