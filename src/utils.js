@@ -3,7 +3,7 @@ export const filterUserTrips = (userID, trips) => {
 };
 
 export const calculateTotalCostForYear = (trips, destinations) => {
-  const currentYear = new Date("01/01/2020").getFullYear();
+  const currentYear = new Date().getFullYear();
   console.log(currentYear);
   const thisYearsTrips = trips.filter(
     (trip) => new Date(trip.date).getFullYear() === currentYear
