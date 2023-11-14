@@ -1,7 +1,7 @@
 //Query Selectors:
 export const signInButton = document.querySelector("#signin");
-export const loginPage = document.querySelector(".lower-page-trips");
-export const tripsPage = document.querySelector(".lower-page-login");
+export const loginPage = document.querySelector(".bottom-page-login");
+export const tripsPage = document.querySelector(".bottom-page-trip");
 export const tripsTitle = document.querySelector(".trips-header");
 export const tripsContainer = document.querySelector(".trips-container");
 export const tripsTest = document.querySelector(".user-trips");

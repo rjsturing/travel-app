@@ -74,7 +74,7 @@
 
   <div class="bottom-page-login">
     <main>
-      <form action="" method="post" id="form" name="form" class="login-box" >
+      <form id="form" name="form" class="login-box" >
         <p class="sign-in">Sign in</p>
         <section class="login-username">        
           <label for="username">Username</label>
@@ -85,13 +85,12 @@
           <input id="current-password" name="current-password" type="password">
         </section>
         <button id="signin">Sign in</button> 
+        <p id="errorMessage"></p>
+
       </form>
     </main>
   </div>
 
-  <footer>
-    <p id="errorMessage"></p>
-  </footer>
 
   <!-- Do not include the scripts.js or class files here - it is done by the webpack server -->
   <script src="bundle.js"></script>

@@ -1,3 +1,5 @@
+import { setUpDashboard } from './scripts.js';
+
 export const getData = (endpoint) => {
   return fetch(`http://localhost:3001/api/v1/${endpoint}`)
     .then((response) => {
@@ -18,4 +20,13 @@ export const postData = (endpoint, data) => {
   })
   .then(response => response.json())
   .catch(error => console.error('Error:', error));
+};
+
+export const fetchSingleTraveler = (userId) => {
+  return getData(`travelers/${userId}`)
+    .then(userResponse => {
+        if (userResponse) {
+            setUpDashboard(userId);
+        }
+    });
 };
