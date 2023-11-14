@@ -13,11 +13,16 @@ export const renderTrips = (trips, destinations) => {
     const matchingDestination = destinations.find(
       (destination) => destination.id === trip.destinationID
     );
+
+    let tripStatus = trip.status.charAt(0).toUpperCase() + trip.status.slice(1);
+
     tripsContainer.innerHTML += `
         <li>
           <dl>
             <dt>Destination:</dt>
             <dd>${matchingDestination.destination}</dd>
+            <dt>Status:</dt>
+            <dd>${tripStatus}</dd>
             <dt>Number of Travelers:</dt>
             <dd>${trip.travelers}</dd>
             <dt>Date:</dt>
@@ -32,7 +37,6 @@ export const renderTrips = (trips, destinations) => {
 };
 
 export const populateDestinations = (destinations) => {
-  console.log(destinations);
   const locationDropdown = document.getElementById("location-dropdown");
   destinations.forEach((destination) => {
     const option = document.createElement("option");

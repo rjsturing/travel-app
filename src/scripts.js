@@ -47,24 +47,56 @@ const formatDate = (dateString) => {
 };
 
 const handleSubmit = (event) => {
-    event.preventDefault();
+  if (event) event.preventDefault();
+    const startDate = document.getElementById("start-date").value;
+    const endDate = document.getElementById("end-date").value;
+    const numberOfTravelers = document.getElementById("num-travelers").value;
+    const destination = document.getElementById("location-dropdown").value;
 
-    // Capture form data
+        if (!startDate || !endDate || !numberOfTravelers || destination === "") {
+        showErrorMessage("Please fill out all required fields.");
+        return; 
+    }
+
+    if (new Date(startDate) > new Date(endDate)) {
+        showErrorMessage("End date must be after start date.");
+        return;
+    }
+
+    
     const newTrip = {
-        id: Date.now(), // or generate ID as per your application logic
-        userID: userId, // Assuming you have a way to get the current user's ID
+        id: Date.now(),
+        userID: userId,
         destinationID: parseInt(document.getElementById("location-dropdown").value),
         travelers: parseInt(document.getElementById("num-travelers").value),
         date: formatDate(document.getElementById("start-date").value),
         duration: calculateDuration(document.getElementById("start-date").value, document.getElementById("end-date").value),
-        status: "pending", // or "approved", depending on your logic
-        suggestedActivities: [] // Populate as per your form structure
+        status: "pending",
+        suggestedActivities: [] 
     };
 
-    // Post the new trip data
     postData('trips', newTrip)
         .then(response => console.log(response))
         .catch(error => console.error('Error:', error));
 };
 
-document.getElementById("newBookingBtn").addEventListener("click", handleSubmit);
+document.getElementById("booking-form").addEventListener("submit", function(event) {
+  event.preventDefault(); 
+
+  const startDate = document.getElementById("start-date").value;
+  const endDate = document.getElementById("end-date").value;
+  const numberOfTravelers = document.getElementById("num-travelers").value;
+  const destination = document.getElementById("location-dropdown").value;
+
+  if (!startDate || !endDate || !numberOfTravelers || destination === "") {
+      showErrorMessage("Please fill out all required fields.");
+      return; 
+  }
+
+  if (new Date(startDate) > new Date(endDate)) {
+      showErrorMessage("End date must be after start date.");
+      return;
+  }
+
+  handleSubmit(event);
+});

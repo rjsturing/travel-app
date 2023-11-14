@@ -4,11 +4,10 @@ export const filterUserTrips = (userID, trips) => {
 
 export const calculateTotalCostForYear = (trips, destinations) => {
   const currentYear = new Date().getFullYear();
-  console.log(currentYear);
-  const thisYearsTrips = trips.filter(
-    (trip) => new Date(trip.date).getFullYear() === currentYear
-  );
-  console.log(thisYearsTrips);
+const thisYearsTrips = trips.filter(
+    (trip) => new Date(trip.date).getFullYear() === currentYear && trip.status !== "pending"
+);
+//   console.log(thisYearsTrips);
   const totalSpent = thisYearsTrips.reduce((acc, trip) => {
     const matchingDestination = destinations.find(
       (destination) => destination.id === trip.destinationID
