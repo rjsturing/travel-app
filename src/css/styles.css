@@ -269,6 +269,7 @@ button > p {
 .trips-container {
   height: 500px;
   overflow-y: auto;
+  background-color: white;
 }
 
 .trips-container img {
