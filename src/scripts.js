@@ -6,72 +6,165 @@ import "./images/main-logo.png";
 import "./images/paris-pic.png";
 
 // Import domUpdates
-import { renderTrips, populateDestinations, showErrorMessage } from "./domUpdates";
+import { renderTrips, populateDestinations, showErrorMessage, updateAnnualSpending } from "./domUpdates";
+
+//Import Function
+import { filterUserTrips, 
+  calculateTotalCostForYear } from "./utils";
+
+// API Calls
+import { getData, postData } from "./apiCalls";
 
 
 let userId = 3
+let destinations = [];
 
-//Import Function
-import { filterUserTrips } from "./utils";
+const calculateDuration = (startDate, endDate) => {
+  const start = new Date(startDate);
+  const end = new Date(endDate);
+  const duration = (end - start) / (1000 * 60 * 60 * 24); // Convert milliseconds to days
+  return duration;
+};
 
-// API Calls
-import { getData } from "./apiCalls";
+const calculateEstimatedCost = () => {
+  const numberOfTravelers = parseInt(document.getElementById("num-travelers").value);
+  const destinationID = parseInt(document.getElementById("location-dropdown").value);
+  const duration = calculateDuration(document.getElementById("start-date").value, document.getElementById("end-date").value);
 
-// signInButton.addEventListener("click", showMainPage);
+  // Assuming you have a way to get the destination details (like cost per day, flight cost per person)
+  const destination = destinations.find(dest => dest.id === destinationID);
+
+  if (destination && numberOfTravelers && duration) {
+      const lodgingCost = destination.estimatedLodgingCostPerDay * numberOfTravelers * duration;
+      const flightCost = destination.estimatedFlightCostPerPerson * numberOfTravelers;
+      const totalCost = lodgingCost + flightCost;
+      const totalCostWithFee = totalCost * 1.1; // 10% travel agent fee
+
+      return totalCostWithFee;
+  }
+
+  return 0;
+};
+
+
 
 const setUpDashboard = (userId) => {
   Promise.all([getData("trips"), getData("destinations")])
     .then(([tripsResponse, destinationsResponse]) => {
+      destinations = destinationsResponse.destinations;
       const userTrips = filterUserTrips(userId, tripsResponse.trips);
       renderTrips(userTrips, destinationsResponse.destinations);
       populateDestinations(destinationsResponse.destinations);
+
+      const userTotal = calculateTotalCostForYear(userTrips, destinationsResponse.destinations);
+      updateAnnualSpending(userTotal);
     })
     .catch((error) => showErrorMessage(error.message));
 };
 
 window.addEventListener("load", () => {
-  setUpDashboard(3);
+  setUpDashboard(userId);
 });
 
 
+const formatDate = (dateString) => {
+  return dateString.split('-').join('/');
+};
+
+const handleSubmit = (event) => {
+  if (event) event.preventDefault();
+    const startDate = document.getElementById("start-date").value;
+    const endDate = document.getElementById("end-date").value;
+    const numberOfTravelers = document.getElementById("num-travelers").value;
+    const destination = document.getElementById("location-dropdown").value;
+
+        if (!startDate || !endDate || !numberOfTravelers || destination === "") {
+        showErrorMessage("Please fill out all required fields.");
+        return; 
+    }
+
+    if (new Date(startDate) > new Date(endDate)) {
+        showErrorMessage("End date must be after start date.");
+        return;
+    }
+
+    
+    const newTrip = {
+        id: Date.now(),
+        userID: userId,
+        destinationID: parseInt(document.getElementById("location-dropdown").value),
+        travelers: parseInt(document.getElementById("num-travelers").value),
+        date: formatDate(document.getElementById("start-date").value),
+        duration: calculateDuration(document.getElementById("start-date").value, document.getElementById("end-date").value),
+        status: "pending",
+        suggestedActivities: [] 
+    };
+
+    postData('trips', newTrip)
+        .then(response => console.log(response))
+        .catch(error => console.error('Error:', error));
+};
+
+document.getElementById("booking-form").addEventListener("submit", function(event) {
+  event.preventDefault(); 
+
+  const startDate = document.getElementById("start-date").value;
+  const endDate = document.getElementById("end-date").value;
+  const numberOfTravelers = document.getElementById("num-travelers").value;
+  const destination = document.getElementById("location-dropdown").value;
+
+  if (!startDate || !endDate || !numberOfTravelers || destination === "") {
+      showErrorMessage("Please fill out all required fields.");
+      return; 
+  }
+
+  if (new Date(startDate) > new Date(endDate)) {
+      showErrorMessage("End date must be after start date.");
+      return;
+  }
+
+  handleSubmit(event);
+});
+
+
+const displayEstimatedCost = () => {
+  const estimatedCost = calculateEstimatedCost();
+  const costElement = document.getElementById("estimated-cost");
+  if (costElement) {
+      costElement.textContent = `Estimated Cost: $${estimatedCost.toFixed(2)}`;
+  }
+};
+
+document.getElementById("num-travelers").addEventListener("change", displayEstimatedCost);
+document.getElementById("location-dropdown").addEventListener("change", displayEstimatedCost);
+document.getElementById("start-date").addEventListener("change", displayEstimatedCost);
+document.getElementById("end-date").addEventListener("change", displayEstimatedCost);
 
 
 
 
+// const loginUser = () => {
+//   const userIDInput = document.getElementById('userID-input')
+//   const userID = parseInt(userIDInput.value);
 
-// window.addEventListener('load', () => {
-//     getData
-//     Promise.all(getData()).then((promises) => {
-//         mainData.trips = promises[0].trips;
-//         mainData.travelers = promises[1].travelers;
-//         mainData.destinations = promises[2].destinations;
-//         console.log('mainData', mainData);
-//         console.log('mainData.trips', mainData.trips)
-//         console.log('mainData.travelers', mainData.travelers)
-//         getUserData()
-//     })
-//     .then(getDescriptiveData())
-//     .then(generatePage())
-//   })
-
-//   const getUserData = () => {
-//     mainData.currentUser = mainData.travelers[2].id
-//     mainData.userTrips = getUserTrips(mainData.trips, mainData.currentUser)
-//     console.log('mainData.currentUser',  mainData.currentUser)
-//     console.log('mainData.userTrips', mainData.userTrips)
+//   if (!userID) {
+//       showErrorMessage('Please enter a valid User ID.');
+//       return;
 //   }
 
-//   const getDescriptiveData = () => {
-//     mainData.userNums = getDestinationNums(mainData.userTrips)
-//     mainData.locationNames = getDestinationNames(mainData.userNums, mainData.destinations)
-//     console.log("mainData.userNums", mainData.userNums)
-//     console.log("mainData.locationNames", mainData.locationNames)
-//     mainData.tripCards = createTripCard(mainData.userTrips, mainData.destinations)
-//   }+
+//   getData(`travelers/${userID}`)
+//       .then(userResponse => {
+//           if (userResponse) {
+//               userId = userID;
+//               setUpDashboard(userId);
+//               loginPage.classList.add('hidden');
+//               tripsPage.classList.remove('hidden'); 
+//           }
+//       })
+//       .catch(() => {
+//           showErrorMessage('Failed to login. Please check the User ID.');
+//       });
+// };
 
-//   const generatePage = () => {
-//     mainData.currentUser = mainData.travelers[0];
-//     updateTripsPage(mainData.travelers[0].name, mainData.locationNames, mainData.trips[0].destinationID)
-//   }
+// signInButton.addEventListener('click', loginUser);
 
-// console.log('This is the JavaScript entry file - your code begins here.');
