@@ -22,6 +22,7 @@ import { filterUserTrips, calculateTotalCostForYear } from "./utils";
 // API Calls
 import { getData, postData, fetchSingleTraveler } from "./apiCalls";
 
+let userId
 let destinations = [];
 
 const calculateDuration = (startDate, endDate) => {
@@ -106,7 +107,7 @@ const handleSubmit = (event) => {
 
   const newTrip = {
     id: Date.now(),
-    userID: userId,
+    userID: window.userId,
     destinationID: parseInt(document.getElementById("location-dropdown").value),
     travelers: parseInt(document.getElementById("num-travelers").value),
     date: formatDate(document.getElementById("start-date").value),
@@ -194,6 +195,7 @@ const loginUser = () => {
   }
 
   const userId = parseInt(userIdMatch[1]);
+  window.userId = userId;
 
     if (userId < 1 || userId > 50) {
     showErrorMessage(
