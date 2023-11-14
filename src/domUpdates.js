@@ -65,3 +65,8 @@ export const updateTripsPage = (travelerName, locationNames) => {
   tripsTest.innerText = `${locationNames}`;
 };
 
+export const updateAnnualSpending = (totalSpending) => {
+    const annualSpendingElement = document.getElementById("annual-spending");
+    annualSpendingElement.innerText = `Year-to-Date spending: ${totalSpending}`;
+}
+

@@ -6,7 +6,7 @@ import "./images/main-logo.png";
 import "./images/paris-pic.png";
 
 // Import domUpdates
-import { renderTrips, populateDestinations, showErrorMessage } from "./domUpdates";
+import { renderTrips, populateDestinations, showErrorMessage, updateAnnualSpending } from "./domUpdates";
 
 //Event Listeners
 
@@ -19,7 +19,6 @@ import { filterUserTrips,
 // API Calls
 import { getData } from "./apiCalls";
 
-// signInButton.addEventListener("click", showMainPage);
 
 const setUpDashboard = (userId) => {
   Promise.all([getData("trips"), getData("destinations")])
@@ -29,7 +28,7 @@ const setUpDashboard = (userId) => {
       populateDestinations(destinationsResponse.destinations);
 
       const userTotal = calculateTotalCostForYear(userTrips, destinationsResponse.destinations);
-      updateAnnualSpending(userTotal); // This line updates the UI with the total cost
+      updateAnnualSpending(userTotal);
     })
     .catch((error) => showErrorMessage(error.message));
 };

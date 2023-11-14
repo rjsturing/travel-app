@@ -272,9 +272,8 @@ button > p {
 }
 
 .trips-container img {
-  width: 200px; /* Set the width as desired */
-  height: auto; /* This maintains the aspect ratio of the images */
-  /* You can add more styling here as needed */
+  width: 300px;
+  height: auto; 
 }
 
 .location {
