@@ -139,3 +139,32 @@ document.getElementById("num-travelers").addEventListener("change", displayEstim
 document.getElementById("location-dropdown").addEventListener("change", displayEstimatedCost);
 document.getElementById("start-date").addEventListener("change", displayEstimatedCost);
 document.getElementById("end-date").addEventListener("change", displayEstimatedCost);
+
+
+
+
+// const loginUser = () => {
+//   const userIDInput = document.getElementById('userID-input')
+//   const userID = parseInt(userIDInput.value);
+
+//   if (!userID) {
+//       showErrorMessage('Please enter a valid User ID.');
+//       return;
+//   }
+
+//   getData(`travelers/${userID}`)
+//       .then(userResponse => {
+//           if (userResponse) {
+//               userId = userID;
+//               setUpDashboard(userId);
+//               loginPage.classList.add('hidden');
+//               tripsPage.classList.remove('hidden'); 
+//           }
+//       })
+//       .catch(() => {
+//           showErrorMessage('Failed to login. Please check the User ID.');
+//       });
+// };
+
+// signInButton.addEventListener('click', loginUser);
+
