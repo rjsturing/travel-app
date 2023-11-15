@@ -66,6 +66,7 @@ const setUpDashboard = (userId) => {
     getData(`travelers/${userId}`),
   ])
     .then(([tripsResponse, destinationsResponse, userResponse]) => {
+      console.log(userResponse)
       destinations = destinationsResponse.destinations;
       const userTrips = filterUserTrips(userId, tripsResponse.trips);
       renderTrips(userTrips, destinationsResponse.destinations);
