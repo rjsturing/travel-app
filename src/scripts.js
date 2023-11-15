@@ -1,12 +1,15 @@
 import "./css/styles.css";
+import "./images/trips-icon.png";
+import "./images/user-icon.png";
+import "./images/main-logo.png";
+
 
 import {
   renderTrips,
   populateDestinations,
   showErrorMessage,
   updateAnnualSpending,
-  loginPage,
-  tripsPage,
+  updateEstimatedCost,
 } from "./domUpdates";
 
 // Utility Functions
@@ -24,6 +27,16 @@ import { getData, postData } from "./apiCalls";
 // Global Variables
 let globalUserID;
 let destinations = [];
+
+// Query Selectors
+const loginForm = document.getElementById("form");
+const bookingForm = document.getElementById("booking-form");
+const numTravelersElement = document.getElementById("num-travelers");
+const locationDropdownElement = document.getElementById("location-dropdown");
+const startDateElement = document.getElementById("start-date");
+const endDateElement = document.getElementById("end-date");
+const loginPage = document.querySelector(".bottom-page-login");
+const tripsPage = document.querySelector(".bottom-page-trip");
 
 const calculateEstimatedCost = () => {
   const numberOfTravelers = parseInt(
@@ -109,57 +122,39 @@ const handleSubmit = (event) => {
       numberOfTravelersInput.value = "";
       destinationInput.value = "";
       setUpDashboard(globalUserID);
+      displayEstimatedCost()
     })
     .catch((error) => showErrorMessage(error.message));
 };
 
-////////////////////////////////////////////////////////
-document
-  .getElementById("booking-form")
-  .addEventListener("submit", function (event) {
-    event.preventDefault();
+const submitBookingForm = (event) => {
+  event.preventDefault();
 
-    const startDate = document.getElementById("start-date").value;
-    const endDate = document.getElementById("end-date").value;
-    const numberOfTravelers = document.getElementById("num-travelers").value;
-    const destination = document.getElementById("location-dropdown").value;
+  const startDate = document.getElementById("start-date").value;
+  const endDate = document.getElementById("end-date").value;
+  const numberOfTravelers = document.getElementById("num-travelers").value;
+  const destination = document.getElementById("location-dropdown").value;
 
-    if (!startDate || !endDate || !numberOfTravelers || destination === "") {
-      showErrorMessage("Please fill out all required fields.");
-      return;
-    }
-
-    if (new Date(startDate) > new Date(endDate)) {
-      showErrorMessage("End date must be after start date.");
-      return;
-    }
-
-    handleSubmit(event);
-  });
-
-////////////////////////////////////////////////////////
-const displayEstimatedCost = () => {
-  const estimatedCost = calculateEstimatedCost();
-  const costElement = document.getElementById("estimated-cost");
-  if (costElement) {
-    costElement.textContent = `Estimated Cost: $${estimatedCost.toFixed(2)}`;
+  if (!startDate || !endDate || !numberOfTravelers || destination === "") {
+    showErrorMessage("Please fill out all required fields.");
+    return;
   }
+
+  if (new Date(startDate) > new Date(endDate)) {
+    showErrorMessage("End date must be after start date.");
+    return;
+  }
+
+  handleSubmit(event);
 };
 
-document
-  .getElementById("num-travelers")
-  .addEventListener("change", displayEstimatedCost);
-document
-  .getElementById("location-dropdown")
-  .addEventListener("change", displayEstimatedCost);
-document
-  .getElementById("start-date")
-  .addEventListener("change", displayEstimatedCost);
-document
-  .getElementById("end-date")
-  .addEventListener("change", displayEstimatedCost);
+const displayEstimatedCost = () => {
+  const estimatedCost = calculateEstimatedCost();
+  updateEstimatedCost(estimatedCost);
+};
 
-const loginUser = () => {
+const loginUser = (event) => {
+  event.preventDefault();
   const usernameInput = document.getElementById("username").value;
   const passwordInput = document.getElementById("current-password").value;
 
@@ -194,24 +189,13 @@ const loginUser = () => {
     return;
   }
 
-  // fetch user data and set up dashboard
-  // fetchSingleTraveler(userId)
-  //   .then(() => {
-  //     loginPage.classList.add("hidden");
-  //     tripsPage.classList.remove("hidden");
-  //   })
-  //   .catch((error) => {
-  //     showErrorMessage(`Failed to login: ${error.message}`);
-  //   });
   setUpDashboard(userId);
 };
 
-document.getElementById("form").addEventListener("submit", function (event) {
-  event.preventDefault();
-  loginUser();
-});
-
-document.getElementById("form").addEventListener("submit", function (event) {
-  event.preventDefault();
-  loginUser();
-});
+// Event Listeners
+loginForm.addEventListener("submit", loginUser);
+bookingForm.addEventListener("submit", submitBookingForm);
+numTravelersElement.addEventListener("change", displayEstimatedCost);
+locationDropdownElement.addEventListener("change", displayEstimatedCost);
+startDateElement.addEventListener("change", displayEstimatedCost);
+endDateElement.addEventListener("change", displayEstimatedCost);

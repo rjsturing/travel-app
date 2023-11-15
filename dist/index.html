@@ -32,9 +32,8 @@
   <section class="bottom-page-trip hidden">
     <div class="center-container">
       <h1 class="trips-header">Trips</h1>
-      <div class="content-container"> <!-- Flex container for trips and booking panel -->
+      <div class="content-container">
         <section class="trips-container">
-          <!-- TRIPS WILL BE POPULATED -->
         </section>
         <div class="booking-panel">
           <div class="booking-panel">
@@ -43,7 +42,7 @@
               <div class="date-section">
                 <p class="dates-error"></p>
                 <label for="start-date">Start Date: </label>
-                <input type="date" placeholder="search for dates" id="start-date" min="2023-08-07"required>
+                <input type="date" placeholder="search for dates" id="start-date" min="2023-08-07" required>
               </div>
               <div class="date-section">
                 <label for="end-date">End Date: </label>
@@ -67,10 +66,9 @@
             </form>
         </div>
       </div>
-      <p id="annual-spending">Year-to-Date spending:</p>
+      <p id="annual-spending">Year-to-Date spending: </p>
     </div>
   </section>
-
 
   <div class="bottom-page-login">
     <main>
@@ -86,14 +84,11 @@
         </section>
         <button id="signin">Sign in</button> 
         <p id="errorMessage"></p>
-
       </form>
     </main>
   </div>
 
-
-  <!-- Do not include the scripts.js or class files here - it is done by the webpack server -->
-  <script src="bundle.js"></script>
+<script src="bundle.js"></script>
 
 </body>
 </html>
