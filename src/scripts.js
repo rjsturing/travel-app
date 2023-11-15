@@ -15,10 +15,11 @@ import {
   calculateTotalCostForYear,
   calculateDuration,
   calculateTripCost,
+  formatDate,
 } from "./utils";
 
 // API Calls
-import { getData, postData, fetchSingleTraveler } from "./apiCalls";
+import { getData, postData } from "./apiCalls";
 
 // Global Variables
 let globalUserID;
@@ -43,9 +44,15 @@ const calculateEstimatedCost = () => {
   return 0;
 };
 
-export const setUpDashboard = (userId) => {
-  Promise.all([getData("trips"), getData("destinations")])
-    .then(([tripsResponse, destinationsResponse]) => {
+const setUpDashboard = (userId) => {
+  loginPage.classList.add("hidden");
+  tripsPage.classList.remove("hidden");
+  Promise.all([
+    getData("trips"),
+    getData("destinations"),
+    getData(`travelers/${userId}`),
+  ])
+    .then(([tripsResponse, destinationsResponse, userResponse]) => {
       destinations = destinationsResponse.destinations;
       const userTrips = filterUserTrips(userId, tripsResponse.trips);
       renderTrips(userTrips, destinationsResponse.destinations);
@@ -56,31 +63,30 @@ export const setUpDashboard = (userId) => {
         destinationsResponse.destinations
       );
       updateAnnualSpending(userTotal);
+
+      // update dom with userResponse data
     })
     .catch((error) => showErrorMessage(error.message));
 };
 
-window.addEventListener("load", () => {});
-
-////////////////////////////////////////////////////////
-const formatDate = (dateString) => {
-  return dateString.split("-").join("/");
-};
-
-////////////////////////////////////////////////////////
 const handleSubmit = (event) => {
-  if (event) event.preventDefault();
-  const startDate = document.getElementById("start-date").value;
-  const endDate = document.getElementById("end-date").value;
-  const numberOfTravelers = document.getElementById("num-travelers").value;
-  const destination = document.getElementById("location-dropdown").value;
+  event.preventDefault();
+  const startDateInput = document.getElementById("start-date");
+  const endDateInput = document.getElementById("end-date");
+  const numberOfTravelersInput = document.getElementById("num-travelers");
+  const destinationInput = document.getElementById("location-dropdown");
 
-  if (!startDate || !endDate || !numberOfTravelers || destination === "") {
+  if (
+    !startDateInput.value ||
+    !endDateInput.value ||
+    !numberOfTravelersInput.value ||
+    destinationInput.value === ""
+  ) {
     showErrorMessage("Please fill out all required fields.");
     return;
   }
 
-  if (new Date(startDate) > new Date(endDate)) {
+  if (new Date(startDateInput.value) > new Date(endDateInput.value)) {
     showErrorMessage("End date must be after start date.");
     return;
   }
@@ -88,20 +94,23 @@ const handleSubmit = (event) => {
   const newTrip = {
     id: Date.now(),
     userID: globalUserID,
-    destinationID: parseInt(document.getElementById("location-dropdown").value),
-    travelers: parseInt(document.getElementById("num-travelers").value),
-    date: formatDate(document.getElementById("start-date").value),
-    duration: calculateDuration(
-      document.getElementById("start-date").value,
-      document.getElementById("end-date").value
-    ),
+    destinationID: parseInt(destinationInput.value),
+    travelers: parseInt(numberOfTravelersInput.value),
+    date: formatDate(startDateInput.value),
+    duration: calculateDuration(startDateInput.value, endDateInput.value),
     status: "pending",
     suggestedActivities: [],
   };
 
   postData("trips", newTrip)
-    .then((response) => console.log(response))
-    .catch((error) => console.error("Error:", error));
+    .then((response) => {
+      startDateInput.value = "";
+      endDateInput.value = "";
+      numberOfTravelersInput.value = "";
+      destinationInput.value = "";
+      setUpDashboard(globalUserID);
+    })
+    .catch((error) => showErrorMessage(error.message));
 };
 
 ////////////////////////////////////////////////////////
@@ -186,14 +195,15 @@ const loginUser = () => {
   }
 
   // fetch user data and set up dashboard
-  fetchSingleTraveler(userId)
-    .then(() => {
-      loginPage.classList.add("hidden");
-      tripsPage.classList.remove("hidden");
-    })
-    .catch((error) => {
-      showErrorMessage(`Failed to login: ${error.message}`);
-    });
+  // fetchSingleTraveler(userId)
+  //   .then(() => {
+  //     loginPage.classList.add("hidden");
+  //     tripsPage.classList.remove("hidden");
+  //   })
+  //   .catch((error) => {
+  //     showErrorMessage(`Failed to login: ${error.message}`);
+  //   });
+  setUpDashboard(userId);
 };
 
 document.getElementById("form").addEventListener("submit", function (event) {

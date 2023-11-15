@@ -47,3 +47,7 @@ export const calculateTripCost = (destination, numberOfTravelers, duration) => {
 
     return totalCostWithFee;
 }
+
+export const formatDate = (dateString) => {
+  return dateString.split("-").join("/");
+};

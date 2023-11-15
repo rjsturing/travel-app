@@ -22,11 +22,11 @@ export const postData = (endpoint, data) => {
   .catch(error => console.error('Error:', error));
 };
 
-export const fetchSingleTraveler = (userId) => {
-  return getData(`travelers/${userId}`)
-    .then(userResponse => {
-        if (userResponse) {
-            setUpDashboard(userId);
-        }
-    });
-};
+// export const fetchSingleTraveler = (userId) => {
+//   return getData(`travelers/${userId}`)
+//     .then(userResponse => {
+//         if (userResponse) {
+//             setUpDashboard(userId);
+//         }
+//     });
+// };
