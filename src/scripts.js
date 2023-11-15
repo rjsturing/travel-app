@@ -25,6 +25,7 @@ import {
 import { getData, postData } from "./apiCalls";
 
 // Global Variables
+
 let globalUserID;
 let destinations = [];
 
@@ -66,7 +67,6 @@ const setUpDashboard = (userId) => {
     getData(`travelers/${userId}`),
   ])
     .then(([tripsResponse, destinationsResponse, userResponse]) => {
-      console.log(userResponse)
       destinations = destinationsResponse.destinations;
       const userTrips = filterUserTrips(userId, tripsResponse.trips);
       renderTrips(userTrips, destinationsResponse.destinations);
@@ -117,7 +117,7 @@ const handleSubmit = (event) => {
   };
 
   postData("trips", newTrip)
-    .then((response) => {
+    .then(() => {
       startDateInput.value = "";
       endDateInput.value = "";
       numberOfTravelersInput.value = "";
