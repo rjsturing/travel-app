@@ -29,12 +29,11 @@
     </div>
   </header>
 
-  <section class="bottom-page-trip">
+  <section class="bottom-page-trip hidden">
     <div class="center-container">
       <h1 class="trips-header">Trips</h1>
-      <div class="content-container"> <!-- Flex container for trips and booking panel -->
+      <div class="content-container">
         <section class="trips-container">
-          <!-- TRIPS WILL BE POPULATED -->
         </section>
         <div class="booking-panel">
           <div class="booking-panel">
@@ -43,7 +42,7 @@
               <div class="date-section">
                 <p class="dates-error"></p>
                 <label for="start-date">Start Date: </label>
-                <input type="date" placeholder="search for dates" id="start-date" min="2023-08-07"required>
+                <input type="date" placeholder="search for dates" id="start-date" min="2023-08-07" required>
               </div>
               <div class="date-section">
                 <label for="end-date">End Date: </label>
@@ -67,36 +66,29 @@
             </form>
         </div>
       </div>
-      <p id="annual-spending">Year-to-Date spending:</p>
+      <p id="annual-spending">Year-to-Date spending: </p>
     </div>
   </section>
 
-
-  <div class="bottom-page-login hidden">
+  <div class="bottom-page-login">
     <main>
-      <form action="" method="post" id="form" name="form" class="login-box" >
+      <form id="form" name="form" class="login-box" >
         <p class="sign-in">Sign in</p>
-        <p> Don't have an account? <span class="create-acct"> Create one here</span></p>
-        <section class="login-email">        
-          <label for="email">Email</label>
-          <input id="email" name="email" type="email" placeholder=" " autocomplete="username" required>
+        <section class="login-username">        
+          <label for="username">Username</label>
+          <input id="username" name="username" type="username" placeholder=" " autocomplete="username" required>
         </section>                
         <section class="login-password">        
           <label for="current-password">Password</label>
           <input id="current-password" name="current-password" type="password">
-          <button id="toggle-password" type="button">Show password</button>
         </section>
         <button id="signin">Sign in</button> 
+        <p id="errorMessage"></p>
       </form>
     </main>
   </div>
 
-  <footer>
-    <p id="errorMessage"></p>
-  </footer>
-
-  <!-- Do not include the scripts.js or class files here - it is done by the webpack server -->
-  <script src="bundle.js"></script>
+<script src="bundle.js"></script>
 
 </body>
 </html>

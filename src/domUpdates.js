@@ -1,10 +1,7 @@
 //Query Selectors:
-export const signInButton = document.querySelector("#signin");
-export const loginPage = document.querySelector(".lower-page-trips");
-export const tripsPage = document.querySelector(".lower-page-login");
-export const tripsTitle = document.querySelector(".trips-header");
-export const tripsContainer = document.querySelector(".trips-container");
-export const tripsTest = document.querySelector(".user-trips");
+const tripsTitle = document.querySelector(".trips-header");
+const tripsContainer = document.querySelector(".trips-container");
+const tripsTest = document.querySelector(".user-trips");
 const errorMessageElement = document.getElementById("errorMessage");
 
 export const renderTrips = (trips, destinations) => {
@@ -46,8 +43,6 @@ export const populateDestinations = (destinations) => {
   });
 };
 
-// signInButton.addEventListener('click', showMainPage)
-
 export const showErrorMessage = (message) => {
   errorMessageElement.innerText = message;
 };
@@ -70,6 +65,11 @@ export const updateTripsPage = (travelerName, locationNames) => {
 };
 
 export const updateAnnualSpending = (totalSpending) => {
-    const annualSpendingElement = document.getElementById("annual-spending");
-    annualSpendingElement.innerText = `Year-to-Date spending: ${totalSpending}`;
-}
+  const annualSpendingElement = document.getElementById("annual-spending");
+  annualSpendingElement.innerText = `Year-to-Date spending: ${totalSpending}`;
+};
+
+export const updateEstimatedCost = (estimatedCost) => {
+  const costElement = document.getElementById("estimated-cost");
+  costElement.textContent = `Estimated Cost: $${estimatedCost.toFixed(2)}`;
+};

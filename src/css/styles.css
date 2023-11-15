@@ -2,7 +2,6 @@ body,
 html {
   font-family: 'Averia Serif Libre', serif;
   height: 100%;
-  /* overflow: hidden; */
 }
 
 * {
@@ -51,45 +50,43 @@ header > p {
 .user-profile > img {
   height: 60px;
   width: 60px;
- }
+}
 
- .trips > img {
+.trips > img {
   height: 50px;
   width: 175px;
- }
+}
 
- button.user-profile
- {
+button.user-profile {
   height: 35px;
   width: 35px;
   display: flex;
   align-items: center;
   background-color: white;
   border: none;
- }
+}
 
-button.trips
-  {
+button.trips {
   height: 35px;
   width: 1px;
   display: flex;
   align-items: center;
   background-color: white;
   border: none;
- }
+}
 
- #users {
+#users {
   height: 85px;
   width: 85px;
   margin-right: 10px;
- }
+}
 
- .trips {
+.trips {
   margin-left: 60px;
   margin-right: 175px;
   height: 35px;
   width: 35px;
- }
+}
 
 .bottom-page-login {
   height: 100%;
@@ -137,7 +134,7 @@ form > button {
   width: 35vw;
 }
 
-.login-email {
+.login-username {
   display: flex;
   flex-direction: column;
 }
@@ -150,27 +147,27 @@ form > button {
   margin-top: 2vh;
 }
 
- button {
+button {
   width: 50%;
   height: 5vh;
- }
+}
 
- .create-acct {
+.create-acct {
   color: #008AB9;
   cursor: pointer;
- }
+}
 
- input {
+input {
   height: 5vh;
- }
+}
 
- #toggle-password {
+#toggle-password {
   margin-left: 17vw;
   font-family: 'Averia Serif Libre', serif;
   background-color: transparent;
   border: none;
   cursor: pointer;
- }
+}
 
 #signin {
   background-color: #548392;
@@ -305,11 +302,11 @@ button > p {
 
 .trip-info-container {
   background-color:#548392;
-   padding: 10px; 
-   display: flex;
-   flex-direction: column;
-   justify-content: space-evenly;
-   border-bottom-left-radius: 10px;
+  padding: 10px; 
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  border-bottom-left-radius: 10px;
   border-bottom-right-radius: 10px;
 }
 
@@ -320,11 +317,11 @@ button > p {
 .content-container {
   display: flex;
   justify-content: center;
-  align-items: start; /* Aligns items to the top of the container */
-  gap: 20px; /* Adjust as needed for spacing */
+  align-items: start;
+  gap: 20px;
 }
 
 .trips-container,
 .booking-panel {
-  flex: 1; /* Each takes up equal width */
+  flex: 1;
 }
