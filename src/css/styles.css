@@ -325,3 +325,8 @@ button > p {
 .booking-panel {
   flex: 1;
 }
+
+li {
+  font-size:larger;
+  list-style-type: none
+}

@@ -43,8 +43,7 @@ export const calculateTripCost = (destination, numberOfTravelers, duration) => {
     const flightCost =
       destination.estimatedFlightCostPerPerson * numberOfTravelers;
     const totalCost = lodgingCost + flightCost;
-    const totalCostWithFee = totalCost * 1.1; // 10% travel agent fee
-
+    const totalCostWithFee = totalCost * 1.1;
     return totalCostWithFee;
 }
 
